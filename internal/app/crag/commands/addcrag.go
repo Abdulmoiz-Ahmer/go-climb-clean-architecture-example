@@ -26,11 +26,6 @@ type addCragRequestHandler struct {
 	notificationService notification.Service
 }
 
-//NewAddCragRequestHandler Initializes an AddCommandHandler
-func NewAddCragRequestHandler(uuidProvider uuid.Provider, timeProvider time.Provider, repo crag.Repository, notificationService notification.Service) CreateCragRequestHandler {
-	return addCragRequestHandler{uuidProvider: uuidProvider, timeProvider: timeProvider, repo: repo, notificationService: notificationService}
-}
-
 //Handle Handles the AddCragRequest
 func (h addCragRequestHandler) Handle(req AddCragRequest) error {
 	c := crag.Crag{
@@ -50,3 +45,10 @@ func (h addCragRequestHandler) Handle(req AddCragRequest) error {
 	}
 	return h.notificationService.Notify(n)
 }
+
+//NewAddCragRequestHandler Initializes an AddCommandHandler
+func NewAddCragRequestHandler(uuidProvider uuid.Provider, timeProvider time.Provider, repo crag.Repository, notificationService notification.Service) CreateCragRequestHandler {
+	return addCragRequestHandler{uuidProvider: uuidProvider, timeProvider: timeProvider, repo: repo, notificationService: notificationService}
+}
+
+
